@@ -1,0 +1,8 @@
+[user]
+	email = hugo.pompougnac@inria.fr
+	name = Hugo Pompougnac
+[i18n]
+	logOutputEncoding = utf-8
+	commitEncoding = utf-8
+[core]
+	pager = less -R
