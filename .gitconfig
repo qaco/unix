@@ -1,8 +1,29 @@
 [user]
-	email = hugo.pompougnac@inria.fr
-	name = Hugo Pompougnac
+        email = hugo.pompougnac@inria.fr
+        name = Hugo Pompougnac
 [i18n]
-	logOutputEncoding = utf-8
-	commitEncoding = utf-8
+        logOutputEncoding = utf-8
+        commitEncoding = utf-8
 [core]
-	pager = less -R
+        pager = less -R
+[diff]
+        algorithm = histogram
+        wordRegex = [^[:space:]]+
+[log]
+        date = short
+        abbrevCommit = true
+[pull]
+        rebase = true
+[rebase]
+        autoStash = true
+[push]
+        default = simple
+        autoSetupRemote = true
+[fetch]
+        prune = true
+[advice]
+        statusHints = false
+        addIgnoredFile = false
+[alias]
+        lg = log --oneline --graph --decorate
+        last = log -1 HEAD --stat
