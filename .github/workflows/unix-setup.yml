@@ -1,0 +1,46 @@
+name: Unix setup CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  setup-unix:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install base utilities
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            git
+
+      - name: Setup test
+        shell: bash -il {0}
+        run: |
+          chmod +x setup.sh
+          ./setup.sh
+
+      - name: .bashrc test
+        shell: bash -il {0}
+        run: |
+          chmod +x setup.sh
+          ./setup.sh
+          source ~/.bashrc
+          alias emacs-agenda >/dev/null 2>&1
+
+      - name: .gitconfig test
+        shell: bash -il {0}
+        run: |
+          chmod +x setup.sh
+          ./setup.sh
+          EMAIL_EXPECTED="hugo.pompougnac@inria.fr"
+          EMAIL_ACTUAL="$(git config --global user.email || true)"
+          if [[ "$EMAIL_ACTUAL" != "$EMAIL_EXPECTED" ]]; then
+            exit 1
+          fi
