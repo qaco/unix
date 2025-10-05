@@ -12,8 +12,6 @@ alias gcc='LANG=en_GB gcc'
 alias clang='LANG=en_GB clang'
 
 alias git='LANG=en_GB git'
-alias glg='git log --graph --oneline --decorate --color=always'
-alias grb='git branch | grep -v "^\*" | xargs git branch -D'
 
 alias ll='ls -alF'
 alias la='ls -A'
