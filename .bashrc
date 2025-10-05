@@ -60,7 +60,6 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;31m'
 export LESS_TERMCAP_mb=$'\E[01;34m'
 export LESS_TERMCAP_md=$'\E[01;34m'
-# export LESS_TERMCAP_so=$'\E[01;44;33m'
 
 export LESSCHARSET=utf-8
 
@@ -82,7 +81,7 @@ fi
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 # export COLORTERM=truecolor
 # export TERM=xterm-direct
-export VISUAL="emacs -nw"
+export VISUAL="emacs"
 export EDITOR="$VISUAL"
 
 # '`' easier on french keyboards

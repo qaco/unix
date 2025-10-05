@@ -8,6 +8,9 @@ if [[ -x /usr/bin/dircolors ]]; then
     alias egrep='egrep --color=auto'
 fi
 
+alias gcc='LANG=en_GB gcc'
+alias clang='LANG=en_GB clang'
+
 alias git='LANG=en_GB git'
 alias glg='git log --graph --oneline --decorate --color=always'
 alias grb='git branch | grep -v "^\*" | xargs git branch -D'
@@ -18,22 +21,12 @@ alias l='ls -CF'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 if tty | grep -q 'tty'; then
-    alias emacsclient="TERM=xterm-256color emacsclient -nw -c --alternate-editor= "
-    alias emacs="TERM=xterm-256color emacs -nw"
-else
-    alias emacsclient="emacsclient -nw -c --alternate-editor= "
-    alias emacs="emacs -nw"
+    alias emacsclient="TERM=xterm-256color emacsclient -c --alternate-editor= "
+    alias emacs="TERM=xterm-256color emacs"
 fi
 
-alias mc="TERM=xterm-256color mc"
-alias neomutt="TERM=xterm-256color neomutt"
-
-alias mvlc='nvlc -Z --no-metadata-network-access'
-alias cvlc='cvlc -Z --no-metadata-network-access'
 alias pdflatex='pdflatex -halt-on-error'
 alias neofetch='neofetch --gtk3 off --disable memory uptime'
 alias emacs-agenda='ORG_HOME="$HOME/org" emacs -f org-agenda-list'
 alias emacs-term='emacs -f multi-vterm'
 alias emacs-base='emacs -q --load=~/conf/.emacs.d/standalone.el'
-
-alias FileCheck=FileCHeck-14
