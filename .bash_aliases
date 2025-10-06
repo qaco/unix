@@ -28,3 +28,6 @@ alias neofetch='neofetch --gtk3 off --disable memory uptime'
 alias emacs-agenda='ORG_HOME="$HOME" emacs -f org-agenda-list'
 alias emacs-term='emacs -f multi-vterm'
 alias emacs-base='emacs -q --load=~/conf/.emacs.d/standalone.el'
+
+alias pinocchio='ssh hpompoug@pinocchio.inrialpes.fr'
+alias tmux_pinocchio='ssh -t hpompoug@pinocchio.inrialpes.fr "tmux a || tmux"'
