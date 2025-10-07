@@ -47,9 +47,9 @@ WHITE="\[\033[37m\]"
 
 if [ $(id -u) -eq 0 ];
 then
-    PS1=" ${BLUE}\W #${REG}"
+    PS1=" ${RED}\W #${REG}"
 else
-    PS1=" ${BOLD}${BLUE}\W${REG}${GREEN}\$(parse_git_branch)${BOLD}${BLUE} \$ ${REG}"
+    PS1=" ${BOLD}${RED}\W${REG}${GREEN}\$(parse_git_branch)${BOLD}${RED} \$ ${REG}"
 fi
 PS2=" > "
 
@@ -81,11 +81,6 @@ fi
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export VISUAL="emacs"
 export EDITOR="$VISUAL"
-
-# '`' easier on french keyboards
-xmodmap -e "keycode 16 = egrave 7 egrave 7 grave Egrave grave"
-# '@' top left on french keyboards
-xmodmap -e "keycode 49 = at numbersign at numbersign"
 
 [[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
 [[ -f ~/.paths ]] && source ~/.paths
