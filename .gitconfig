@@ -25,7 +25,7 @@
         statusHints = false
         addIgnoredFile = false
 [alias]
-        lg = log --oneline --graph --decorate
+        lg = log --oneline --graph --decorate --all
         last = log -1 HEAD --stat
 [help]
         autocorrect = 1
