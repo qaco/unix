@@ -84,8 +84,6 @@ export EDITOR="$VISUAL"
 
 # '`' easier on french keyboards
 xmodmap -e "keycode 16 = egrave 7 egrave 7 grave Egrave grave"
-# '@' top left on french keyboards
-xmodmap -e "keycode 49 = at numbersign at numbersign"
 
 [[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
 [[ -f ~/.paths ]] && source ~/.paths
