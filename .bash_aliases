@@ -25,6 +25,6 @@ fi
 
 alias pdflatex='pdflatex -halt-on-error'
 alias neofetch='neofetch --gtk3 off --disable memory uptime'
-alias emacs-agenda='ORG_HOME="$HOME/org" emacs -f org-agenda-list'
+alias emacs-agenda='ORG_HOME="$HOME" emacs -f org-agenda-list'
 alias emacs-term='emacs -f multi-vterm'
 alias emacs-base='emacs -q --load=~/conf/.emacs.d/standalone.el'
