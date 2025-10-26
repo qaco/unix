@@ -28,5 +28,6 @@
         lg = log --oneline --graph --decorate
         lga = log --oneline --graph --decorate --all
         last = log -1 HEAD --stat
+        amend = commit --amend --no-edit
 [help]
         autocorrect = 1
