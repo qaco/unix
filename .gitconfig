@@ -29,5 +29,6 @@
         lga = log --oneline --graph --decorate --all
         last = log -1 HEAD --stat
         amend = commit --amend --no-edit
+        pf = push --force
 [help]
         autocorrect = 1
