@@ -30,5 +30,8 @@
         last = log -1 HEAD --stat
         amend = commit --amend --no-edit
         pf = push --force
+        rewind = "!f() { \
+          GIT_SEQUENCE_EDITOR=\"sed -i '1s/^pick/edit/'\" git rebase -i HEAD~${1:-2}; \
+        }; f"
 [help]
         autocorrect = 1
