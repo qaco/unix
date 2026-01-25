@@ -87,3 +87,5 @@ xmodmap -e "keycode 16 = egrave 7 egrave 7 grave Egrave grave"
 
 [[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
 [[ -f ~/.paths ]] && source ~/.paths
+
+export DISABLE_AUTOUPDATER=1
