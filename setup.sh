@@ -6,3 +6,5 @@ cp      -- "$R/.bash_aliases" "$HOME/.bash_aliases"
 ln -sfn -- "$R/.gitconfig"    "$HOME/.gitconfig"
 cp      -- "$R/.tmux.conf"    "$HOME/.tmux.conf"
 cp      -- "$R/.xprofile"    "$HOME/.xprofile"
+
+dconf load /org/cinnamon/ < "$R/cinnamon.dconf"
