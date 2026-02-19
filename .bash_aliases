@@ -8,11 +8,6 @@ if [[ -x /usr/bin/dircolors ]]; then
     alias egrep='egrep --color=auto'
 fi
 
-alias gcc='LANG=en_GB gcc'
-alias clang='LANG=en_GB clang'
-
-alias git='LANG=en_GB git'
-
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
