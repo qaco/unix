@@ -8,19 +8,22 @@ on:
 
 jobs:
   setup-unix:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install base system
+      - name: Install base system (Linux)
+        if: runner.os == 'Linux'
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            git \
-            cinnamon
-
+            git
+            
       - name: Setup test
         shell: bash -il {0}
         run: |
