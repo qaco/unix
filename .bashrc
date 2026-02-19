@@ -81,9 +81,6 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 export VISUAL="emacs"
 export EDITOR="$VISUAL"
 
-# '`' easier on french keyboards
-xmodmap -e "keycode 16 = egrave 7 egrave 7 grave Egrave grave"
-
 [[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
 [[ -f ~/.paths ]] && source ~/.paths
 
