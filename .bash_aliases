@@ -1,12 +1,10 @@
 #! /bin/bash
 
-if [[ -x /usr/bin/dircolors ]]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias grep='grep --exclude-dir venv -I --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
+alias ls='ls --color=auto 2>/dev/null || ls -G'
+alias ls='ls --color=auto'
+alias grep='grep --exclude-dir venv -I --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 alias ll='ls -alF'
 alias la='ls -A'
@@ -20,6 +18,7 @@ fi
 
 alias pdflatex='pdflatex -halt-on-error'
 alias neofetch='neofetch --gtk3 off --disable memory uptime'
+alias emacs='emacs -nw'
 alias emacs-agenda='ORG_HOME="$HOME" emacs -f org-agenda-list'
 alias emacs-term='emacs -f multi-vterm'
 alias emacs-base='emacs -q --load=~/conf/.emacs.d/standalone.el'
