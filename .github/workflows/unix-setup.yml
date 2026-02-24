@@ -17,51 +17,45 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install base system (Linux)
-        if: runner.os == 'Linux'
+      - name: Install base system
         run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            git \
-            cinnamon
+          if [[ "$RUNNER_OS" == "Linux" ]]; then
+            sudo apt-get update
+            sudo apt-get install -y git cinnamon
+          elif [[ "$RUNNER_OS" == "macOS" ]]; then
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            brew install bash git
+            export PATH="/opt/homebrew/bin:$PATH"
+          fi
 
-      - name: Install base system (macOS)
-        if: runner.os == 'macOS'
-        run: |
-          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-          brew install bash git
-          export PATH="/opt/homebrew/bin:$PATH"
-            
-      - name: Setup test (Linux)
-        if: runner.os == 'Linux'
-        shell: bash -il {0}
-        run: ./setup-cinnamon.sh
-
-      - name: Setup test (macOS)
-        if: runner.os == 'macOS'
-        shell: bash -il {0}
-        run: ./setup-macos.sh
-
-      - name: .bashrc test (Linux)
-        if: runner.os == 'Linux'
+      - name: Setup test
         shell: bash -il {0}
         run: |
-          ./setup-cinnamon.sh
-          source ~/.bashrc
-          alias emacs-agenda >/dev/null 2>&1
+          if [[ "$RUNNER_OS" == "Linux" ]]; then
+            ./setup-cinnamon.sh
+          elif [[ "$RUNNER_OS" == "macOS" ]]; then
+            ./setup-macos.sh
+          fi
 
-      - name: .bashrc test (macOS)
-        if: runner.os == 'macOS'
+      - name: .bashrc test
         shell: bash -il {0}
         run: |
-          ./setup-macos.sh
+          if [[ "$RUNNER_OS" == "Linux" ]]; then
+            ./setup-cinnamon.sh
+          elif [[ "$RUNNER_OS" == "macOS" ]]; then
+            ./setup-macos.sh
+          fi
           source ~/.bashrc
           alias emacs-agenda >/dev/null 2>&1
 
       - name: .gitconfig test
         shell: bash -il {0}
         run: |
-          ./setup.sh
+          if [[ "$RUNNER_OS" == "Linux" ]]; then
+            ./setup-cinnamon.sh
+          elif [[ "$RUNNER_OS" == "macOS" ]]; then
+            ./setup-macos.sh
+          fi
           REBASE_ACTUAL="$(git config --global pull.rebase || true)"
           if [[ "$REBASE_ACTUAL" != "true" ]]; then
             exit 1
