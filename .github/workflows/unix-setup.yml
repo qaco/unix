@@ -22,7 +22,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            git
+            git \
+            cinnamon
 
       - name: Install base system (macOS)
         if: runner.os == 'macOS'
@@ -31,15 +32,29 @@ jobs:
           brew install bash git
           export PATH="/opt/homebrew/bin:$PATH"
             
-      - name: Setup test
+      - name: Setup test (Linux)
+        if: runner.os == 'Linux'
         shell: bash -il {0}
-        run: |
-          ./setup.sh
+        run: ./setup-cinnamon.sh
 
-      - name: .bashrc test
+      - name: Setup test (macOS)
+        if: runner.os == 'macOS'
+        shell: bash -il {0}
+        run: ./setup-macos.sh
+
+      - name: .bashrc test (Linux)
+        if: runner.os == 'Linux'
         shell: bash -il {0}
         run: |
-          ./setup.sh
+          ./setup-cinnamon.sh
+          source ~/.bashrc
+          alias emacs-agenda >/dev/null 2>&1
+
+      - name: .bashrc test (macOS)
+        if: runner.os == 'macOS'
+        shell: bash -il {0}
+        run: |
+          ./setup-macos.sh
           source ~/.bashrc
           alias emacs-agenda >/dev/null 2>&1
 
