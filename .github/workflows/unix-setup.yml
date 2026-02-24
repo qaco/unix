@@ -17,36 +17,40 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install base system (Linux)
-        if: runner.os == 'Linux'
+      - name: Select setup script
         run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            git
+          if [[ "$RUNNER_OS" == "Linux" ]]; then
+            echo "SETUP_SCRIPT=./setup-cinnamon.sh" >> "$GITHUB_ENV"
+          elif [[ "$RUNNER_OS" == "macOS" ]]; then
+            echo "SETUP_SCRIPT=./setup-macos.sh" >> "$GITHUB_ENV"
+          fi
 
-      - name: Install base system (macOS)
-        if: runner.os == 'macOS'
+      - name: Install base system
         run: |
-          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-          brew install bash git
-          export PATH="/opt/homebrew/bin:$PATH"
-            
+          if [[ "$RUNNER_OS" == "Linux" ]]; then
+            sudo apt-get update
+            sudo apt-get install -y git cinnamon
+          elif [[ "$RUNNER_OS" == "macOS" ]]; then
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            brew install bash git
+            export PATH="/opt/homebrew/bin:$PATH"
+          fi
+
       - name: Setup test
         shell: bash -il {0}
-        run: |
-          ./setup.sh
+        run: $SETUP_SCRIPT
 
       - name: .bashrc test
         shell: bash -il {0}
         run: |
-          ./setup.sh
+          $SETUP_SCRIPT
           source ~/.bashrc
           alias emacs-agenda >/dev/null 2>&1
 
       - name: .gitconfig test
         shell: bash -il {0}
         run: |
-          ./setup.sh
+          $SETUP_SCRIPT
           REBASE_ACTUAL="$(git config --global pull.rebase || true)"
           if [[ "$REBASE_ACTUAL" != "true" ]]; then
             exit 1
